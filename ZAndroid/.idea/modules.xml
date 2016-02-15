@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ZAndroid.iml" filepath="$PROJECT_DIR$/ZAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zservice/zservice.iml" filepath="$PROJECT_DIR$/zservice/zservice.iml" />
     </modules>
   </component>
 </project>
