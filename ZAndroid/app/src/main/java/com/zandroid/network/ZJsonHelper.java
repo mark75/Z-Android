@@ -2,25 +2,25 @@ package com.zandroid.network;
 
 import java.util.Map;
 
-public class MGJsonHelper {
+public class ZJsonHelper {
 
-	private MGJsonParserInterface mJsonParserImpl;
+	private ZJsonParserInterface mJsonParserImpl;
 
-	private static MGJsonHelper instance = null;
+	private static ZJsonHelper instance = null;
 
-	private MGJsonHelper() {
-		mJsonParserImpl = new MGGsonParserImpl();
+	private ZJsonHelper() {
+		mJsonParserImpl = new ZGsonParserImpl();
 	}
 
-	public static MGJsonHelper instance() {
+	public static ZJsonHelper instance() {
 		if (instance == null) {
-			instance = new MGJsonHelper();
+			instance = new ZJsonHelper();
 		}
 
 		return instance;
 	}
 
-	public MGJsonHelper setParserImpl(MGJsonParserInterface impl) {
+	public ZJsonHelper setParserImpl(ZJsonParserInterface impl) {
 		if (impl != null) {
 			mJsonParserImpl = impl;
 		}

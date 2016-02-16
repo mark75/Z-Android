@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
-import com.zandroid.network.MGRequestParams;
+import com.zandroid.network.ZRequestParams;
 import com.zandroid.utils.ZDeviceInfoUtil;
 import com.zandroid.utils.ZFileUtil;
 import com.zandroid.utils.ZLogUtil;
@@ -52,7 +52,7 @@ import java.util.concurrent.Executor;
 import javax.net.ssl.SSLHandshakeException;
 
 
-public class MGHttpClient {
+public class ZHttpClient {
 
 	/** 上下文. */
 	private static Context mContext;
@@ -128,9 +128,9 @@ public class MGHttpClient {
 	 * @param context
 	 *            the context
 	 */
-	public MGHttpClient(Context context) {
+	public ZHttpClient(Context context) {
 		mContext = context;
-		mExecutorService = MGThreadFactory.getExecutorService();
+		mExecutorService = ZThreadFactory.getExecutorService();
 		mHttpContext = new BasicHttpContext();
 	}
 
@@ -144,8 +144,8 @@ public class MGHttpClient {
 	 * @param responseListener
 	 *            the response listener
 	 */
-	public void get(final String url, final MGRequestParams params,
-					final MGHttpResponseListener responseListener) {
+	public void get(final String url, final ZRequestParams params,
+					final ZHttpResponseListener responseListener) {
 
 		responseListener.setHandler(new ResponderHandler(responseListener));
 		mExecutorService.execute(new Runnable() {
@@ -169,8 +169,8 @@ public class MGHttpClient {
 	 * @param responseListener
 	 *            the response listener
 	 */
-	public void post(final String url, final MGRequestParams params,
-					 final MGHttpResponseListener responseListener) {
+	public void post(final String url, final ZRequestParams params,
+					 final ZHttpResponseListener responseListener) {
 		responseListener.setHandler(new ResponderHandler(responseListener));
 		mExecutorService.execute(new Runnable() {
 			public void run() {
@@ -193,8 +193,8 @@ public class MGHttpClient {
 	 * @param responseListener
 	 *            the response listener
 	 */
-	private void doGet(String url, MGRequestParams params,
-					   MGHttpResponseListener responseListener) {
+	private void doGet(String url, ZRequestParams params,
+					   ZHttpResponseListener responseListener) {
 		try {
 
 			responseListener.sendStartMessage();
@@ -202,9 +202,9 @@ public class MGHttpClient {
 			if (!ZDeviceInfoUtil.isNetworkAvailable(mContext)) {
 				Thread.sleep(200);
 				responseListener.sendFailureMessage(
-						MGHttpStatus.CONNECT_FAILURE_CODE,
-						MGHttpException.CONNECT_EXCEPTION, new MGHttpException(
-								MGHttpException.CONNECT_EXCEPTION));
+						ZHttpStatus.CONNECT_FAILURE_CODE,
+						ZHttpException.CONNECT_EXCEPTION, new ZHttpException(
+								ZHttpException.CONNECT_EXCEPTION));
 				return;
 			}
 
@@ -229,8 +229,8 @@ public class MGHttpClient {
 		} catch (Exception e) {
 			e.printStackTrace();
 			// 发送失败消息
-			responseListener.sendFailureMessage(MGHttpStatus.UNTREATED_CODE,
-					e.getMessage(), new MGHttpException(e));
+			responseListener.sendFailureMessage(ZHttpStatus.UNTREATED_CODE,
+					e.getMessage(), new ZHttpException(e));
 		} finally {
 			responseListener.sendFinishMessage();
 		}
@@ -246,17 +246,17 @@ public class MGHttpClient {
 	 * @param responseListener
 	 *            the response listener
 	 */
-	private void doPost(String url, MGRequestParams params,
-						MGHttpResponseListener responseListener) {
+	private void doPost(String url, ZRequestParams params,
+						ZHttpResponseListener responseListener) {
 		try {
 			responseListener.sendStartMessage();
 
 			if (!ZDeviceInfoUtil.isNetworkAvailable(mContext)) {
 				Thread.sleep(200);
 				responseListener.sendFailureMessage(
-						MGHttpStatus.CONNECT_FAILURE_CODE,
-						MGHttpException.CONNECT_EXCEPTION, new MGHttpException(
-								MGHttpException.CONNECT_EXCEPTION));
+						ZHttpStatus.CONNECT_FAILURE_CODE,
+						ZHttpException.CONNECT_EXCEPTION, new ZHttpException(
+								ZHttpException.CONNECT_EXCEPTION));
 				return;
 			}
 
@@ -298,8 +298,8 @@ public class MGHttpClient {
 			ZLogUtil.i(mContext,
 					"[HTTP POST]:" + url + ",error：" + e.getMessage());
 			// 发送失败消息
-			responseListener.sendFailureMessage(MGHttpStatus.UNTREATED_CODE,
-					e.getMessage(), new MGHttpException(e));
+			responseListener.sendFailureMessage(ZHttpStatus.UNTREATED_CODE,
+					e.getMessage(), new ZHttpException(e));
 		} finally {
 			responseListener.sendFinishMessage();
 		}
@@ -312,8 +312,8 @@ public class MGHttpClient {
 	 * @param params
 	 * @return
 	 */
-	public void doRequest(final String url, final MGRequestParams params,
-						  final MGStringHttpResponseListener responseListener) {
+	public void doRequest(final String url, final ZRequestParams params,
+						  final ZStringHttpResponseListener responseListener) {
 		responseListener.setHandler(new ResponderHandler(responseListener));
 		mExecutorService.execute(new Runnable() {
 			public void run() {
@@ -324,10 +324,10 @@ public class MGHttpClient {
 					if (!ZDeviceInfoUtil.isNetworkAvailable(mContext)) {
 						Thread.sleep(200);
 						responseListener.sendFailureMessage(
-								MGHttpStatus.CONNECT_FAILURE_CODE,
-								MGHttpException.CONNECT_EXCEPTION,
-								new MGHttpException(
-										MGHttpException.CONNECT_EXCEPTION));
+								ZHttpStatus.CONNECT_FAILURE_CODE,
+								ZHttpException.CONNECT_EXCEPTION,
+								new ZHttpException(
+										ZHttpException.CONNECT_EXCEPTION));
 						return;
 					}
 
@@ -359,15 +359,15 @@ public class MGHttpClient {
 					resultString = URLEncoder.encode(resultString, encode);
 					urlConn.getInputStream().close();
 					responseListener.sendSuccessMessage(
-							MGHttpStatus.SUCCESS_CODE, resultString);
+							ZHttpStatus.SUCCESS_CODE, resultString);
 				} catch (Exception e) {
 					e.printStackTrace();
 					ZLogUtil.i(mContext,
 							"[HTTP POST]:" + url + ",error：" + e.getMessage());
 					// 发送失败消息
 					responseListener.sendFailureMessage(
-							MGHttpStatus.UNTREATED_CODE, e.getMessage(),
-							new MGHttpException(e));
+							ZHttpStatus.UNTREATED_CODE, e.getMessage(),
+							new ZHttpException(e));
 				} finally {
 					if (urlConn != null)
 						urlConn.disconnect();
@@ -391,7 +391,7 @@ public class MGHttpClient {
 	 *            the response listener
 	 */
 	public void writeResponseData(Context context, HttpEntity entity,
-								  String name, MGFileHttpResponseListener responseListener) {
+								  String name, ZFileHttpResponseListener responseListener) {
 
 		if (entity == null) {
 			return;
@@ -425,8 +425,8 @@ public class MGHttpClient {
 			e.printStackTrace();
 			// 发送失败消息
 			responseListener.sendFailureMessage(
-					MGHttpStatus.RESPONSE_TIMEOUT_CODE,
-					MGHttpException.SOCKET_TIMEOUT_EXCEPTION, e);
+					ZHttpStatus.RESPONSE_TIMEOUT_CODE,
+					ZHttpException.SOCKET_TIMEOUT_EXCEPTION, e);
 		} finally {
 			try {
 				if (inStream != null) {
@@ -452,7 +452,7 @@ public class MGHttpClient {
 	 *            the response listener
 	 */
 	public void readResponseData(HttpEntity entity,
-								 MGBinaryHttpResponseListener responseListener) {
+								 ZBinaryHttpResponseListener responseListener) {
 
 		if (entity == null) {
 			return;
@@ -482,8 +482,8 @@ public class MGHttpClient {
 			e.printStackTrace();
 			// 发送失败消息
 			responseListener.sendFailureMessage(
-					MGHttpStatus.RESPONSE_TIMEOUT_CODE,
-					MGHttpException.SOCKET_TIMEOUT_EXCEPTION, e);
+					ZHttpStatus.RESPONSE_TIMEOUT_CODE,
+					ZHttpException.SOCKET_TIMEOUT_EXCEPTION, e);
 		} finally {
 			try {
 				if (inStream != null) {
@@ -522,7 +522,7 @@ public class MGHttpClient {
 		private Object[] response;
 
 		/** 响应消息监听. */
-		private MGHttpResponseListener responseListener;
+		private ZHttpResponseListener responseListener;
 
 		/**
 		 * 响应消息处理.
@@ -530,7 +530,7 @@ public class MGHttpClient {
 		 * @param responseListener
 		 *            the response listener
 		 */
-		public ResponderHandler(MGHttpResponseListener responseListener) {
+		public ResponderHandler(ZHttpResponseListener responseListener) {
 			this.responseListener = responseListener;
 		}
 
@@ -548,35 +548,35 @@ public class MGHttpClient {
 					response = (Object[]) msg.obj;
 
 					if (response != null) {
-						if (responseListener instanceof MGStringHttpResponseListener) {
+						if (responseListener instanceof ZStringHttpResponseListener) {
 							if (response.length >= 2) {
-								((MGStringHttpResponseListener) responseListener)
+								((ZStringHttpResponseListener) responseListener)
 										.onSuccess((Integer) response[0],
 												(String) response[1]);
 							} else {
 								ZLogUtil.e(mContext, "SUCCESS_MESSAGE "
-										+ MGHttpException.MISSING_PARAMETERS);
+										+ ZHttpException.MISSING_PARAMETERS);
 							}
 
-						} else if (responseListener instanceof MGBinaryHttpResponseListener) {
+						} else if (responseListener instanceof ZBinaryHttpResponseListener) {
 							if (response.length >= 2) {
-								((MGBinaryHttpResponseListener) responseListener)
+								((ZBinaryHttpResponseListener) responseListener)
 										.onSuccess((Integer) response[0],
 												(byte[]) response[1]);
 							} else {
 								ZLogUtil.e(mContext, "SUCCESS_MESSAGE "
-										+ MGHttpException.MISSING_PARAMETERS);
+										+ ZHttpException.MISSING_PARAMETERS);
 							}
-						} else if (responseListener instanceof MGFileHttpResponseListener) {
+						} else if (responseListener instanceof ZFileHttpResponseListener) {
 
 							if (response.length >= 1) {
-								MGFileHttpResponseListener mAbFileHttpResponseListener = ((MGFileHttpResponseListener) responseListener);
+								ZFileHttpResponseListener mAbFileHttpResponseListener = ((ZFileHttpResponseListener) responseListener);
 								mAbFileHttpResponseListener.onSuccess(
 										(Integer) response[0],
 										mAbFileHttpResponseListener.getFile());
 							} else {
 								ZLogUtil.e(mContext, "SUCCESS_MESSAGE "
-										+ MGHttpException.MISSING_PARAMETERS);
+										+ ZHttpException.MISSING_PARAMETERS);
 							}
 
 						}
@@ -586,13 +586,13 @@ public class MGHttpClient {
 					response = (Object[]) msg.obj;
 					if (response != null && response.length >= 3) {
 						// 异常转换为可提示的
-						MGHttpException exception = new MGHttpException(
+						ZHttpException exception = new ZHttpException(
 								(Exception) response[2]);
 						responseListener.onFailure((Integer) response[0],
 								(String) response[1], exception);
 					} else {
 						ZLogUtil.e(mContext, "FAILURE_MESSAGE "
-								+ MGHttpException.MISSING_PARAMETERS);
+								+ ZHttpException.MISSING_PARAMETERS);
 					}
 					break;
 				case START_MESSAGE:
@@ -608,7 +608,7 @@ public class MGHttpClient {
 								(Long) response[1]);
 					} else {
 						ZLogUtil.e(mContext, "PROGRESS_MESSAGE "
-								+ MGHttpException.MISSING_PARAMETERS);
+								+ ZHttpException.MISSING_PARAMETERS);
 					}
 					break;
 				case RETRY_MESSAGE:
@@ -725,11 +725,11 @@ public class MGHttpClient {
 	 */
 	private class RedirectionResponseHandler implements ResponseHandler<String> {
 
-		private MGHttpResponseListener mResponseListener = null;
+		private ZHttpResponseListener mResponseListener = null;
 		private String mUrl = null;
 
 		public RedirectionResponseHandler(String url,
-										  MGHttpResponseListener responseListener) {
+										  ZHttpResponseListener responseListener) {
 			super();
 			this.mUrl = url;
 			this.mResponseListener = responseListener;
@@ -752,7 +752,7 @@ public class MGHttpClient {
 				// request.abort();
 
 				if (entity != null) {
-					if (mResponseListener instanceof MGStringHttpResponseListener) {
+					if (mResponseListener instanceof ZStringHttpResponseListener) {
 						// entity中的内容只能读取一次,否则Content has been consumed
 						// 如果压缩要解压
 						Header header = entity.getContentEncoding();
@@ -760,7 +760,7 @@ public class MGHttpClient {
 							String contentEncoding = header.getValue();
 							if (contentEncoding != null) {
 								if (contentEncoding.contains("gzip")) {
-									entity = new MGGzipDecompressingEntity(
+									entity = new ZGzipDecompressingEntity(
 											entity);
 								}
 							}
@@ -770,14 +770,14 @@ public class MGHttpClient {
 						responseBody = new String(
 								EntityUtils.toByteArray(entity), charset);
 
-						((MGStringHttpResponseListener) mResponseListener)
+						((ZStringHttpResponseListener) mResponseListener)
 								.sendSuccessMessage(statusCode, responseBody);
-					} else if (mResponseListener instanceof MGBinaryHttpResponseListener) {
+					} else if (mResponseListener instanceof ZBinaryHttpResponseListener) {
 						responseBody = "Binary";
 						readResponseData(
 								entity,
-								((MGBinaryHttpResponseListener) mResponseListener));
-					} else if (mResponseListener instanceof MGFileHttpResponseListener) {
+								((ZBinaryHttpResponseListener) mResponseListener));
+					} else if (mResponseListener instanceof ZFileHttpResponseListener) {
 						// 获取文件名
 						String fileName = ZFileUtil.getCacheFileNameFromUrl(
 								mUrl, response);
@@ -785,7 +785,7 @@ public class MGHttpClient {
 								mContext,
 								entity,
 								fileName,
-								((MGFileHttpResponseListener) mResponseListener));
+								((ZFileHttpResponseListener) mResponseListener));
 					}
 					// 资源释放!!!
 					try {
@@ -812,21 +812,21 @@ public class MGHttpClient {
 				// 404
 				mResponseListener
 						.sendFailureMessage(statusCode,
-								MGHttpException.NOT_FOUND_EXCEPTION,
-								new MGHttpException(
-										MGHttpException.NOT_FOUND_EXCEPTION));
+								ZHttpException.NOT_FOUND_EXCEPTION,
+								new ZHttpException(
+										ZHttpException.NOT_FOUND_EXCEPTION));
 			} else if (statusCode == HttpStatus.SC_FORBIDDEN) {
 				// 403
 				mResponseListener
 						.sendFailureMessage(statusCode,
-								MGHttpException.FORBIDDEN_EXCEPTION,
-								new MGHttpException(
-										MGHttpException.FORBIDDEN_EXCEPTION));
+								ZHttpException.FORBIDDEN_EXCEPTION,
+								new ZHttpException(
+										ZHttpException.FORBIDDEN_EXCEPTION));
 			} else {
 				mResponseListener.sendFailureMessage(statusCode,
-						MGHttpException.REMOTE_SERVICE_EXCEPTION,
-						new MGHttpException(
-								MGHttpException.REMOTE_SERVICE_EXCEPTION));
+						ZHttpException.REMOTE_SERVICE_EXCEPTION,
+						new ZHttpException(
+								ZHttpException.REMOTE_SERVICE_EXCEPTION));
 			}
 			return null;
 		}

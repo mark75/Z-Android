@@ -2,29 +2,29 @@ package com.zandroid.network;
 
 import com.android.volley.VolleyError;
 
-public class MGResponseError extends Exception {
+public class ZResponseError extends Exception {
 
 	public final VolleyError volleyError;
 
-	public MGResponseError() {
+	public ZResponseError() {
 		this.volleyError = null;
 	}
 
-	public MGResponseError(VolleyError error) {
+	public ZResponseError(VolleyError error) {
 		this.volleyError = error;
 	}
 
-	public MGResponseError(String exceptionMessage) {
+	public ZResponseError(String exceptionMessage) {
 		super(exceptionMessage);
 		this.volleyError = null;
 	}
 
-	public MGResponseError(String exceptionMessage, Throwable reason) {
+	public ZResponseError(String exceptionMessage, Throwable reason) {
 		super(exceptionMessage, reason);
 		this.volleyError = null;
 	}
 
-	public MGResponseError(Throwable cause) {
+	public ZResponseError(Throwable cause) {
 		super(cause);
 		this.volleyError = null;
 	}

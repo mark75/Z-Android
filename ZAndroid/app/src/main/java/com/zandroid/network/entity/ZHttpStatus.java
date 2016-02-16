@@ -1,6 +1,6 @@
 package com.zandroid.network.entity;
 
-public class MGHttpStatus {
+public class ZHttpStatus {
 
 	/** ³É¹¦·µ»ØÂë. */
 	public static final int SUCCESS_CODE = 200;

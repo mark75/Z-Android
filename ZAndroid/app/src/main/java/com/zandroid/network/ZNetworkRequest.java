@@ -20,17 +20,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
-public class MGNetworkRequest extends Request<String> {
+public class ZNetworkRequest extends Request<String> {
 
 	private String mBody;
-	private MGResponseListener mListener;
+	private ZResponseListener mListener;
 	private Map<String, String> mHeaders = new HashMap<String, String>();
 	private static final String interval = "|";
 	private int mReqType = 0;
 	private boolean mContentJSON = true;
 	private boolean mGZip = true;
 	private int mMethod;
-	private MGRequestParams mRequestParams;
+	private ZRequestParams mRequestParams;
 
 	private static final String HEADER_CHARSET = "Charset";
 	private static final String HEADER_CHARSET_UTF8 = "UTF-8";
@@ -47,47 +47,47 @@ public class MGNetworkRequest extends Request<String> {
 		int DELETE = 3;
 	}
 
-	public MGNetworkRequest(int method, String url, MGRequestParams params,
-			MGResponseListener listener) {
+	public ZNetworkRequest(int method, String url, ZRequestParams params,
+						   ZResponseListener listener) {
 		super(method, getRealUrl(method, url, params), null);
 		mMethod = method;
 		mRequestParams = params;
 		mListener = listener;
 	}
 
-	public MGNetworkRequest(int method, String url, String body,
-			MGResponseListener listener) {
+	public ZNetworkRequest(int method, String url, String body,
+						   ZResponseListener listener) {
 		super(method, url, null);
 		mMethod = method;
 		mBody = body;
 		mListener = listener;
 	}
 
-	public MGNetworkRequest(int method, String url, String body) {
+	public ZNetworkRequest(int method, String url, String body) {
 		this(method, url, body, null);
 	}
 
-	public MGNetworkRequest setHeader(String key, String value) {
+	public ZNetworkRequest setHeader(String key, String value) {
 		mHeaders.put(key, value);
 		return this;
 	}
 
-	public MGNetworkRequest setHeaders(Map<String, String> headers) {
+	public ZNetworkRequest setHeaders(Map<String, String> headers) {
 		mHeaders.putAll(headers);
 		return this;
 	}
 
-	public MGNetworkRequest setGZip(boolean value) {
+	public ZNetworkRequest setGZip(boolean value) {
 		mGZip = value;
 		return this;
 	}
 
-	public MGNetworkRequest setContentJSON(boolean value) {
+	public ZNetworkRequest setContentJSON(boolean value) {
 		mContentJSON = value;
 		return this;
 	}
 
-	public MGNetworkRequest setReqTye(int reqType) {
+	public ZNetworkRequest setReqTye(int reqType) {
 		mReqType = reqType;
 		return this;
 	}
@@ -97,17 +97,17 @@ public class MGNetworkRequest extends Request<String> {
 	}
 
 	public void start(Context context) {
-		MGNetworkRequestManager.addRequest(this, context.getClass()
+		ZNetworkRequestManager.addRequest(this, context.getClass()
 				.getSimpleName());
 	}
 
 	public void start(Fragment fragment) {
-		MGNetworkRequestManager.addRequest(this, fragment.getClass()
+		ZNetworkRequestManager.addRequest(this, fragment.getClass()
 				.getSimpleName());
 	}
 
 	private static String getRealUrl(int method, String url,
-			MGRequestParams params) {
+			ZRequestParams params) {
 
 		if (params != null && (method == Method.GET || method == Method.DELETE)) {
 			if (url.indexOf("?") == -1) {
@@ -158,7 +158,7 @@ public class MGNetworkRequest extends Request<String> {
 	@Override
 	public void deliverError(VolleyError error) {
 		if (mListener != null) {
-			mListener.onResponse(this, new MGNetworkResponse(error));
+			mListener.onResponse(this, new ZNetworkResponse(error));
 		}
 	}
 
@@ -216,7 +216,7 @@ public class MGNetworkRequest extends Request<String> {
 		return sb.toString();
 	}
 
-	private MGNetworkResponse buildFromResponse(String response) {
+	private ZNetworkResponse buildFromResponse(String response) {
 		String cookie = null;
 		String result = null;
 
@@ -229,7 +229,7 @@ public class MGNetworkRequest extends Request<String> {
 			cookie = response.substring(pos - cookieLen, pos);
 		}
 
-		return new MGNetworkResponse(result, cookie);
+		return new ZNetworkResponse(result, cookie);
 	}
 
 }

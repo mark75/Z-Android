@@ -22,11 +22,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class MGRequestParams {
+public class ZRequestParams {
 
-	/** url²ÎÊý. */
+	/** urlï¿½ï¿½ï¿½ï¿½. */
 	protected ConcurrentHashMap<String, Object> urlParams;
-	/** ÎÄ¼þ²ÎÊý. */
+	/** ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½. */
 	protected ConcurrentHashMap<String, ContentBody> fileParams;
 	private MultipartEntity multiPart = null;
 	private final static int boundaryLength = 32;
@@ -57,7 +57,7 @@ public class MGRequestParams {
 	/**
 	 * default boundary is auto generate {@link #getBoundary()}
 	 */
-	public MGRequestParams() {
+	public ZRequestParams() {
 		super();
 		boundary = getBoundary();
 		urlParams = new ConcurrentHashMap<String, Object>();
@@ -74,12 +74,12 @@ public class MGRequestParams {
 	}
 
 	/**
-	 * Ìí¼ÓÒ»¸öÎÄ¼þ²ÎÊý
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @param attr
-	 *            ÊôÐÔÃû
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param file
-	 *            ÎÄ¼þ
+	 *            ï¿½Ä¼ï¿½
 	 */
 	public void putFile(String attr, File file) {
 		if (attr != null && file != null) {
@@ -96,14 +96,14 @@ public class MGRequestParams {
 	}
 
 	/**
-	 * Ìí¼ÓÒ»¸öbyte[]²ÎÊý
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½byte[]ï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @param attr
-	 *            ÊôÐÔÃû
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param fileName
-	 *            ÎÄ¼þÃû
+	 *            ï¿½Ä¼ï¿½ï¿½ï¿½
 	 * @param data
-	 *            ×Ö½ÚÊý×é
+	 *            ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void put(String attr, String fileName, byte[] data) {
 		if (attr != null && fileName != null) {
@@ -112,7 +112,7 @@ public class MGRequestParams {
 	}
 
 	/**
-	 * Ìí¼ÓÒ»¸öObject²ÎÊý
+	 * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Objectï¿½ï¿½ï¿½ï¿½
 	 *
 	 * @param attr
 	 * @param str
@@ -128,7 +128,7 @@ public class MGRequestParams {
 	}
 
 	/**
-	 * »ñÈ¡²ÎÊý×Ö·û´®.
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½.
 	 *
 	 * @return the param string
 	 */
@@ -143,12 +143,12 @@ public class MGRequestParams {
 	}
 
 	public String getParamsJsonString() {
-		return urlParams == null ? null : MGJsonHelper.instance().objToJson(
+		return urlParams == null ? null : ZJsonHelper.instance().objToJson(
 				urlParams);
 	}
 
 	/**
-	 * »ñÈ¡²ÎÊýÁÐ±í.
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½.
 	 *
 	 * @return the params list
 	 */
@@ -164,21 +164,21 @@ public class MGRequestParams {
 
 	/**
 	 *
-	 * »ñÈ¡HttpEntity.
+	 * ï¿½ï¿½È¡HttpEntity.
 	 */
 	public HttpEntity getEntity() {
 
 		if (fileParams.isEmpty()) {
-			// ²»°üº¬ÎÄ¼þµÄ
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
 			return createFormEntity();
 		} else {
-			// °üº¬ÎÄ¼þºÍ²ÎÊýµÄ
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½
 			return createMultipartEntity();
 		}
 	}
 
 	/**
-	 * ´´½¨HttpEntity.
+	 * ï¿½ï¿½ï¿½ï¿½HttpEntity.
 	 *
 	 * @return the http entity
 	 */
@@ -192,7 +192,7 @@ public class MGRequestParams {
 	}
 
 	/**
-	 * ÃèÊö£º´´½¨ÎÄ¼þÓòHttpEntity.
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½HttpEntity.
 	 *
 	 * @return
 	 * @throws IOException
@@ -221,7 +221,7 @@ public class MGRequestParams {
 	}
 
 	/**
-	 * »ñÈ¡url²ÎÊý.
+	 * ï¿½ï¿½È¡urlï¿½ï¿½ï¿½ï¿½.
 	 *
 	 * @return the url params
 	 */
@@ -230,7 +230,7 @@ public class MGRequestParams {
 	}
 
 	/**
-	 * »ñÈ¡ÎÄ¼þ²ÎÊý.
+	 * ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½.
 	 * 
 	 * @return the file params
 	 */

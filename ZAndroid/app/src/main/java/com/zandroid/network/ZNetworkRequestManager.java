@@ -6,10 +6,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-public class MGNetworkRequestManager {
+public class ZNetworkRequestManager {
 	private static RequestQueue mRequestQueue;
 
-	private MGNetworkRequestManager() {
+	private ZNetworkRequestManager() {
 		// no instances
 	}
 

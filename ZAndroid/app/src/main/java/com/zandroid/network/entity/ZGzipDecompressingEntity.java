@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.GZIPInputStream;
 
-public class MGGzipDecompressingEntity extends HttpEntityWrapper {
+public class ZGzipDecompressingEntity extends HttpEntityWrapper {
 
-	public MGGzipDecompressingEntity(final HttpEntity entity) {
+	public ZGzipDecompressingEntity(final HttpEntity entity) {
 		super(entity);
 	}
 

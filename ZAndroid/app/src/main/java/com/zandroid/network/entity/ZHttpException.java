@@ -11,7 +11,7 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
-public class MGHttpException extends Exception {
+public class ZHttpException extends Exception {
 
 	/** The Constant CONNECTEXCEPTION. */
 	public static String CONNECT_EXCEPTION = "无法连接到网络";
@@ -61,7 +61,7 @@ public class MGHttpException extends Exception {
 	 * @param e
 	 *            异常
 	 */
-	public MGHttpException(Exception e) {
+	public ZHttpException(Exception e) {
 		super();
 
 		try {
@@ -99,7 +99,7 @@ public class MGHttpException extends Exception {
 	 * @param message
 	 *            异常的消息
 	 */
-	public MGHttpException(String message) {
+	public ZHttpException(String message) {
 		super(message);
 		msg = message;
 	}

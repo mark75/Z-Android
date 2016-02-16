@@ -15,13 +15,13 @@
  */
 package com.zandroid.network.entity;
 
-public abstract class MGStringHttpResponseListener extends
-		MGHttpResponseListener {
+public abstract class ZStringHttpResponseListener extends
+		ZHttpResponseListener {
 
 	/**
 	 * ππ‘Ï.
 	 */
-	public MGStringHttpResponseListener() {
+	public ZStringHttpResponseListener() {
 		super();
 	}
 
@@ -44,7 +44,7 @@ public abstract class MGStringHttpResponseListener extends
 	 *            the content
 	 */
 	public void sendSuccessMessage(int statusCode, String content) {
-		sendMessage(obtainMessage(MGHttpClient.SUCCESS_MESSAGE, new Object[] {
+		sendMessage(obtainMessage(ZHttpClient.SUCCESS_MESSAGE, new Object[] {
 				statusCode, content }));
 	}
 

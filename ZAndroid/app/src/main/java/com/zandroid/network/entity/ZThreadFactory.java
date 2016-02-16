@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class MGThreadFactory {
+public class ZThreadFactory {
 
 	/** ÈÎÎñÖ´ÐÐÆ÷. */
 	public static Executor mExecutorService = null;

@@ -51,7 +51,7 @@ import java.util.List;
 public class HttpMultipart {
 
 	/** ÏìÓ¦¼àÌıÆ÷. */
-	private MGHttpResponseListener responseListener;
+	private ZHttpResponseListener responseListener;
 
 	private static ByteArrayBuffer encode(final Charset charset,
 			final String string) {
@@ -305,11 +305,11 @@ public class HttpMultipart {
 		}
 	}
 
-	public MGHttpResponseListener getResponseListener() {
+	public ZHttpResponseListener getResponseListener() {
 		return responseListener;
 	}
 
-	public void setResponseListener(MGHttpResponseListener responseListener) {
+	public void setResponseListener(ZHttpResponseListener responseListener) {
 		this.responseListener = responseListener;
 	}
 

@@ -9,27 +9,27 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-public class MGNetworkResponse {
+public class ZNetworkResponse {
 
 	private VolleyError mError;
 	private String mResult;
 	private String mCookie;
 
-	public MGNetworkResponse(String result, String cookie,
-			MGJsonParserInterface jsonParser) {
+	public ZNetworkResponse(String result, String cookie,
+							ZJsonParserInterface jsonParser) {
 		this.mResult = result;
 		this.mCookie = cookie;
 	}
 
-	public MGNetworkResponse(String result, String cookie) {
+	public ZNetworkResponse(String result, String cookie) {
 		this(result, cookie, null);
 	}
 
-	public MGNetworkResponse(String result) {
+	public ZNetworkResponse(String result) {
 		this(result, null, null);
 	}
 
-	public MGNetworkResponse(VolleyError error) {
+	public ZNetworkResponse(VolleyError error) {
 		this.mError = error;
 	}
 
@@ -37,14 +37,14 @@ public class MGNetworkResponse {
 		if (TextUtils.isEmpty(mResult)) {
 			return null;
 		}
-		return MGJsonHelper.instance().jsonToModel(mResult, clazz);
+		return ZJsonHelper.instance().jsonToModel(mResult, clazz);
 	}
 
 	public Map<String, Object> getMap() {
 		if (TextUtils.isEmpty(mResult)) {
 			return null;
 		}
-		return MGJsonHelper.instance().jsonToMap(mResult);
+		return ZJsonHelper.instance().jsonToMap(mResult);
 	}
 
 	public JSONObject getJSONObject() {

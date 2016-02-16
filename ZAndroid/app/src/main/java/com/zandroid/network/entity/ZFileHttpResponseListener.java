@@ -6,7 +6,7 @@ import com.zandroid.utils.ZFileUtil;
 
 import java.io.File;
 
-public abstract class MGFileHttpResponseListener extends MGHttpResponseListener {
+public abstract class ZFileHttpResponseListener extends ZHttpResponseListener {
 
 	/** 当前缓存文件. */
 	private File mFile;
@@ -17,14 +17,14 @@ public abstract class MGFileHttpResponseListener extends MGHttpResponseListener 
 	 * @param url
 	 *            the url
 	 */
-	public MGFileHttpResponseListener(String url) {
+	public ZFileHttpResponseListener(String url) {
 		super();
 	}
 
 	/**
 	 * 默认的构造.
 	 */
-	public MGFileHttpResponseListener() {
+	public ZFileHttpResponseListener() {
 		super();
 	}
 
@@ -34,7 +34,7 @@ public abstract class MGFileHttpResponseListener extends MGHttpResponseListener 
 	 * @param file
 	 *            缓存文件名称
 	 */
-	public MGFileHttpResponseListener(File file) {
+	public ZFileHttpResponseListener(File file) {
 		super();
 		this.mFile = file;
 	}
@@ -66,7 +66,7 @@ public abstract class MGFileHttpResponseListener extends MGHttpResponseListener 
 	 *            the status code
 	 */
 	public void sendSuccessMessage(int statusCode) {
-		sendMessage(obtainMessage(MGHttpClient.SUCCESS_MESSAGE,
+		sendMessage(obtainMessage(ZHttpClient.SUCCESS_MESSAGE,
 				new Object[] { statusCode }));
 	}
 
@@ -79,7 +79,7 @@ public abstract class MGFileHttpResponseListener extends MGHttpResponseListener 
 	 *            the error
 	 */
 	public void sendFailureMessage(int statusCode, Throwable error) {
-		sendMessage(obtainMessage(MGHttpClient.FAILURE_MESSAGE, new Object[] {
+		sendMessage(obtainMessage(ZHttpClient.FAILURE_MESSAGE, new Object[] {
 				statusCode, error }));
 	}
 

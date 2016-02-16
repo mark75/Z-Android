@@ -28,12 +28,12 @@ import java.util.List;
  * @version v1.0
  * @date£º2014-08-05 ÉÏÎç9:00:52
  */
-public abstract class MGHttpListener{
+public abstract class ZHttpListener {
 
     /**
      * ¹¹Ôì.
      */
-	public MGHttpListener() {
+	public ZHttpListener() {
 		super();
 	}
 

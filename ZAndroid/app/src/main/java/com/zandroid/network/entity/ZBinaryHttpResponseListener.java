@@ -1,12 +1,12 @@
 package com.zandroid.network.entity;
 
-public abstract class MGBinaryHttpResponseListener extends
-		MGHttpResponseListener {
+public abstract class ZBinaryHttpResponseListener extends
+		ZHttpResponseListener {
 
 	/**
 	 * ππ‘Ï.
 	 */
-	public MGBinaryHttpResponseListener() {
+	public ZBinaryHttpResponseListener() {
 		super();
 	}
 
@@ -29,7 +29,7 @@ public abstract class MGBinaryHttpResponseListener extends
 	 *            the content
 	 */
 	public void sendSuccessMessage(int statusCode, byte[] content) {
-		sendMessage(obtainMessage(MGHttpClient.SUCCESS_MESSAGE, new Object[] {
+		sendMessage(obtainMessage(ZHttpClient.SUCCESS_MESSAGE, new Object[] {
 				statusCode, content }));
 	}
 

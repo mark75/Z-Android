@@ -2,7 +2,7 @@ package com.zandroid.network;
 
 import java.util.Map;
 
-public interface MGJsonParserInterface {
+public interface ZJsonParserInterface {
 
 	public <T> T jsonToModel(String json, Class<T> clazz);
 

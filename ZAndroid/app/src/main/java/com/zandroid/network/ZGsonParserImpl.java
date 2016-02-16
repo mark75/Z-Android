@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class MGGsonParserImpl implements MGJsonParserInterface {
+public class ZGsonParserImpl implements ZJsonParserInterface {
 
 	private static Gson mGson = new Gson();
 
@@ -43,7 +43,7 @@ public class MGGsonParserImpl implements MGJsonParserInterface {
 		try {
 			return mGson.toJson(obj);
 		} catch (Exception e) {
-			ZLogUtil.e(MGGsonParserImpl.class, e.getMessage());
+			ZLogUtil.e(ZGsonParserImpl.class, e.getMessage());
 		}
 
 		return null;

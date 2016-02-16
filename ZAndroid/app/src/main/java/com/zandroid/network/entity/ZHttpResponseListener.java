@@ -31,7 +31,7 @@ import android.os.Message;
  * @version v1.0
  * @date：2013-11-13 上午9:00:52
  */
-public abstract class MGHttpResponseListener {
+public abstract class ZHttpResponseListener {
 
     /** The handler. */
     private Handler mHandler;
@@ -39,7 +39,7 @@ public abstract class MGHttpResponseListener {
     /**
      * 构造.
      */
-    public MGHttpResponseListener() {
+    public ZHttpResponseListener() {
 		super();
 	}
 
@@ -80,14 +80,14 @@ public abstract class MGHttpResponseListener {
      * 开始消息.
      */
     public void sendStartMessage(){
-    	sendMessage(obtainMessage(MGHttpClient.START_MESSAGE, null));
+    	sendMessage(obtainMessage(ZHttpClient.START_MESSAGE, null));
     }
 
     /**
      * 完成消息.
      */
     public void sendFinishMessage(){
-    	sendMessage(obtainMessage(MGHttpClient.FINISH_MESSAGE,null));
+    	sendMessage(obtainMessage(ZHttpClient.FINISH_MESSAGE,null));
     }
 
     /**
@@ -97,7 +97,7 @@ public abstract class MGHttpResponseListener {
      * @param totalSize the total size
      */
     public void sendProgressMessage(long bytesWritten, long totalSize) {
-        sendMessage(obtainMessage(MGHttpClient.PROGRESS_MESSAGE, new Object[]{bytesWritten, totalSize}));
+        sendMessage(obtainMessage(ZHttpClient.PROGRESS_MESSAGE, new Object[]{bytesWritten, totalSize}));
     }
 
     /**
@@ -108,14 +108,14 @@ public abstract class MGHttpResponseListener {
      * @param error the error
      */
     public void sendFailureMessage(int statusCode,String content,Throwable error){
-    	sendMessage(obtainMessage(MGHttpClient.FAILURE_MESSAGE, new Object[]{statusCode,content, error}));
+    	sendMessage(obtainMessage(ZHttpClient.FAILURE_MESSAGE, new Object[]{statusCode,content, error}));
     }
 
     /**
      * 重试消息.
      */
     public void sendRetryMessage() {
-        sendMessage(obtainMessage(MGHttpClient.RETRY_MESSAGE, null));
+        sendMessage(obtainMessage(ZHttpClient.RETRY_MESSAGE, null));
     }
 
     /**
