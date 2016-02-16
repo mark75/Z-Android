@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/libs/gson-2.3.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/libs/volley-1.0.15.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/MGGsonParserImpl.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/MGJsonHelper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/MGJsonParserInterface.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/MGNetwokFileUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/MGNetworkRequest.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/MGNetworkRequestManager.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/MGNetworkResponse.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/MGRequestParams.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/MGResponseError.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/MGResponseListener.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/FormBodyPart.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/Header.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/HttpMultipart.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/HttpMultipartMode.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MGBinaryHttpResponseListener.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MGFileHttpResponseListener.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MGGzipDecompressingEntity.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MGHttpClient.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MGHttpException.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MGHttpListener.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MGHttpResponseListener.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MGHttpStatus.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MGStringHttpResponseListener.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MGThreadFactory.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MIME.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MinimalField.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/MultipartEntity.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/mine/content/AbstractContentBody.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/mine/content/ByteArrayBody.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/mine/content/ContentBody.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/mine/content/ContentDescriptor.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/mine/content/FileBody.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/mine/content/InputStreamBody.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/mine/content/StringBody.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/entity/mine/content/WriteByteListener.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/websocket/ByteBufferInputStream.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/websocket/ByteBufferOutputStream.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/websocket/NoCopyByteArrayOutputStream.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/websocket/Utf8Validator.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/websocket/WebSocket.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/websocket/WebSocketConnection.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/websocket/WebSocketConnectionHandler.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/websocket/WebSocketException.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/websocket/WebSocketMessage.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/websocket/WebSocketOptions.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/websocket/WebSocketReader.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/network/websocket/WebSocketWriter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/utils/MGAppUtil.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/zandroid/utils/ZFileUtil.java" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

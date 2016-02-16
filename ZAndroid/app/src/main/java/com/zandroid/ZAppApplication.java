@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import com.zandroid.network.MGNetworkRequestManager;
 import com.zandroid.service.ZAppService;
 import com.zandroid.utils.ZLogUtil;
 import com.zandroid.utils.ZToastUtil;
@@ -29,6 +30,7 @@ public class ZAppApplication extends Application {
         globalContext = this.getBaseContext();
 
         ZToastUtil.init(this);
+        MGNetworkRequestManager.init(this);
 
         executorService = Executors.newScheduledThreadPool(5);
         executorService.execute(new Runnable() {
@@ -40,6 +42,15 @@ public class ZAppApplication extends Application {
                 }
             }
         });
+    }
+
+    public static ZAppApplication getInstance(){
+        return application;
+    }
+
+
+    public static Context getContext() {
+        return globalContext;
     }
 
     //退出应用

@@ -14,6 +14,9 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.apache.http.Header;
+import org.apache.http.HttpResponse;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -127,7 +130,7 @@ public class ZFileUtil {
 	 * @return
 	 */
 	public static boolean writeFile(byte[] buffer, String folder,
-			String fileName) {
+									String fileName) {
 		boolean writeSucc = false;
 
 		String folderPath = "";
@@ -309,6 +312,8 @@ public class ZFileUtil {
 
 	/**
 	 * 获取目录文件个数
+	 *
+	 * @return
 	 */
 	public long getFileList(File dir) {
 		long count = 0;
@@ -435,7 +440,6 @@ public class ZFileUtil {
 						deletedFile.delete();
 					}
 					newPath.delete();
-					Log.i("DirectoryManager deleteDirectory", fileName);
 					status = true;
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -466,7 +470,6 @@ public class ZFileUtil {
 			checker.checkDelete(newPath.toString());
 			if (newPath.isFile()) {
 				try {
-					Log.i("DirectoryManager deleteFile", fileName);
 					newPath.delete();
 					status = true;
 				} catch (SecurityException se) {
@@ -523,7 +526,6 @@ public class ZFileUtil {
 		File f = new File(filePath);
 		checker.checkDelete(filePath);
 		if (f.isFile()) {
-			Log.i("DirectoryManager deleteFile", filePath);
 			f.delete();
 			return true;
 		}
@@ -532,6 +534,7 @@ public class ZFileUtil {
 
 	/**
 	 * 清空一个文件夹
+	 *
 	 */
 	public static void clearFileWithPath(String filePath) {
 		List<File> files = ZFileUtil.listPathFiles(filePath);
@@ -571,6 +574,7 @@ public class ZFileUtil {
 
 	/**
 	 * 列出root目录下所有子目录
+	 *
 	 * @return 绝对路径
 	 */
 	public static List<String> listPath(String root) {
@@ -616,6 +620,7 @@ public class ZFileUtil {
 
 	/**
 	 * 创建目录
+	 *
 	 */
 	public static PathStatus createPath(String newPath) {
 		File path = new File(newPath);
@@ -770,7 +775,7 @@ public class ZFileUtil {
 	 * @return The value of the _data column, which is typically a file path.
 	 */
 	public static String getDataColumn(Context context, Uri uri,
-			String selection, String[] selectionArgs) {
+									   String selection, String[] selectionArgs) {
 
 		Cursor cursor = null;
 		final String column = "_data";
@@ -919,6 +924,62 @@ public class ZFileUtil {
 		return name;
 	}
 
+	/**
+	 * 获取真实文件名（xx.后缀），通过网络获取.
+	 *
+	 * @param response
+	 *            the response
+	 * @return 文件名
+	 */
+	public static String getRealFileName(HttpResponse response) {
+		String name = null;
+		try {
+			if (response == null) {
+				return name;
+			}
+			// 获取文件名
+			Header[] headers = response.getHeaders("content-disposition");
+			for (int i = 0; i < headers.length; i++) {
+				Matcher m = Pattern.compile(".*filename=(.*)").matcher(
+						headers[i].getValue());
+				if (m.find()) {
+					name = m.group(1).replace("\"", "");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			ZLogUtil.e(ZFileUtil.class, "网络上获取文件名失败");
+		}
+		return name;
+	}
+
+	/**
+	 * 获取文件名（.后缀），外链模式和通过网络获取.
+	 *
+	 * @param url
+	 *            文件地址
+	 * @param response
+	 *            the response
+	 * @return 文件名
+	 */
+	public static String getCacheFileNameFromUrl(String url,
+												 HttpResponse response) {
+		if (ZStringUtil.isEmpty(url)) {
+			return null;
+		}
+		String name = null;
+		try {
+			// 获取后缀
+			String suffix = getMIMEFromUrl(url, response);
+			if (ZStringUtil.isEmpty(suffix)) {
+				suffix = ".mg";
+			}
+			name = ZMD5Util.md5Digest(url) + suffix;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return name;
+	}
 
 	/**
 	 * 获取文件名（.后缀），外链模式和通过网络获取.
@@ -930,7 +991,7 @@ public class ZFileUtil {
 	 * @return 文件名
 	 */
 	public static String getCacheFileNameFromUrl(String url,
-			HttpURLConnection connection) {
+												 HttpURLConnection connection) {
 		if (ZStringUtil.isEmpty(url)) {
 			return null;
 		}
@@ -983,6 +1044,43 @@ public class ZFileUtil {
 			e.printStackTrace();
 		}
 		return suffix;
+	}
+
+	/**
+	 * 获取文件后缀，本地和网络.
+	 *
+	 * @param url
+	 *            文件地址
+	 * @param response
+	 *            the response
+	 * @return 文件后缀
+	 */
+	public static String getMIMEFromUrl(String url, HttpResponse response) {
+
+		if (ZStringUtil.isEmpty(url)) {
+			return null;
+		}
+		String mime = null;
+		try {
+			// 获取后缀
+			if (url.lastIndexOf(".") != -1) {
+				mime = url.substring(url.lastIndexOf("."));
+				if (mime.indexOf("/") != -1 || mime.indexOf("?") != -1
+						|| mime.indexOf("&") != -1) {
+					mime = null;
+				}
+			}
+			if (ZStringUtil.isEmpty(mime)) {
+				// 获取文件名 这个效率不高
+				String fileName = getRealFileName(response);
+				if (fileName != null && fileName.lastIndexOf(".") != -1) {
+					mime = fileName.substring(fileName.lastIndexOf("."));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mime;
 	}
 
 
