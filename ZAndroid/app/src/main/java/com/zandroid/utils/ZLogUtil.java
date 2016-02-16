@@ -11,7 +11,7 @@ import java.util.Locale;
  * 打印Log的日志工具类
  *
  */
-public class ZLogUtils {
+public class ZLogUtil {
     private static final String DEFAULT_TAG = "ZLogUtil";
     public static boolean D = true;
     public static boolean I = true;
@@ -201,7 +201,7 @@ public class ZLogUtils {
         String caller = "<unknown>";
         for (int i = 2; i < trace.length; i++) {
             Class<?> clazz = trace[i].getClass();
-            if (!clazz.equals(ZLogUtils.class)) {
+            if (!clazz.equals(ZLogUtil.class)) {
                 String callingClass = trace[i].getClassName();
                 callingClass = callingClass.substring(callingClass
                         .lastIndexOf('.') + 1);

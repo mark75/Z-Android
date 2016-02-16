@@ -5,7 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.zandroid.service.ZAppService;
-import com.zandroid.utils.ZLogUtils;
+import com.zandroid.utils.ZLogUtil;
+import com.zandroid.utils.ZToastUtil;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,9 +24,11 @@ public class ZAppApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        ZLogUtils.i(Tag + "onCreate()");
+        ZLogUtil.i(Tag + "onCreate()");
         application = this;
         globalContext = this.getBaseContext();
+
+        ZToastUtil.init(this);
 
         executorService = Executors.newScheduledThreadPool(5);
         executorService.execute(new Runnable() {

@@ -1,6 +1,6 @@
 package com.zandroid.service;
 
-import com.zandroid.utils.ZLogUtils;
+import com.zandroid.utils.ZLogUtil;
 
 import java.util.TimerTask;
 
@@ -19,7 +19,7 @@ public class Task2 extends TimerTask {
     @Override
     public void run() {
         taskData.setLastRunning(System.currentTimeMillis());
-        ZLogUtils.i(Tag+Thread.currentThread().getId());
+        ZLogUtil.i(Tag + Thread.currentThread().getId());
         //子线程中周期性地执行耗时的后台任务
     }
 }
