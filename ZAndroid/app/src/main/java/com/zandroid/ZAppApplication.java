@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
-import com.zandroid.network.ZNetworkRequestManager;
+import com.zandroid.network.lib.ZNetworkRequestManager;
 import com.zandroid.service.ZAppService;
 import com.zandroid.utils.ZLogUtil;
 import com.zandroid.utils.ZToastUtil;
